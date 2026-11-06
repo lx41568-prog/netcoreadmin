@@ -1,0 +1,9 @@
+@page
+@model NetCoreAdmin.Pages.Admin.Roles.IndexModel
+@{
+    ViewData["Title"] = "角色管理";
+}
+<div class="page-heading"><div><div class="eyebrow">SYSTEM</div><h1>角色管理</h1><p>维护角色代码和启用状态；菜单授权关联表已预置。</p></div></div>
+@if (!string.IsNullOrEmpty(Model.Message)) { <div class="alert-success">@Model.Message</div> }
+<div class="content-grid"><section class="panel"><div class="panel-heading"><div><h2>新建角色</h2><p>角色代码应唯一且便于程序引用</p></div></div><form method="post" class="form-stack compact-form"><label>角色名称<input asp-for="Input.Name" required maxlength="100" /></label><label>角色代码<input asp-for="Input.Code" required maxlength="64" /></label><label>说明<input asp-for="Input.Description" maxlength="500" /></label><button class="button button-primary" type="submit">创建角色</button></form></section>
+<section class="panel"><div class="panel-heading"><div><h2>角色列表</h2><p>@Model.Roles.Count 个角色</p></div></div><div class="table-wrap"><table><thead><tr><th>角色名称</th><th>代码</th><th>说明</th><th>状态</th></tr></thead><tbody>@foreach (var role in Model.Roles) { <tr><td><strong>@role.Name</strong></td><td><code>@role.Code</code></td><td>@(role.Description ?? "—")</td><td><span class="badge badge-green">@(role.IsEnabled ? "启用" : "停用")</span></td></tr> }</tbody></table></div></section></div>

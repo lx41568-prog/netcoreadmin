@@ -1,0 +1,15 @@
+@page
+@model NetCoreAdmin.Pages.Admin.Users.IndexModel
+@{
+    ViewData["Title"] = "用户管理";
+}
+<div class="page-heading"><div><div class="eyebrow">SYSTEM</div><h1>用户管理</h1><p>管理后台登录账户。密码以 ASP.NET Core PasswordHasher 安全哈希保存。</p></div></div>
+@if (!string.IsNullOrEmpty(Model.Message)) { <div class="alert-success">@Model.Message</div> }
+<div class="content-grid">
+<section class="panel"><div class="panel-heading"><div><h2>新建用户</h2><p>创建可登录后台的账户</p></div></div>
+<form method="post" asp-page-handler="Create" class="form-stack compact-form"><label>用户名<input asp-for="NewUser.UserName" required maxlength="64" /></label><label>显示名称<input asp-for="NewUser.DisplayName" required maxlength="100" /></label><label>初始密码<input asp-for="NewUser.Password" type="password" required minlength="8" autocomplete="new-password" /></label><label>邮箱（可选）<input asp-for="NewUser.Email" type="email" maxlength="128" /></label><button class="button button-primary" type="submit">创建用户</button></form></section>
+<section class="panel"><div class="panel-heading"><div><h2>用户列表</h2><p>@Model.Users.Count 个账户</p></div></div><div class="table-wrap"><table><thead><tr><th>用户名</th><th>显示名称</th><th>邮箱</th><th>状态</th><th>创建时间 (UTC)</th></tr></thead><tbody>
+@foreach (var user in Model.Users) { <tr><td><strong>@user.UserName</strong></td><td>@user.DisplayName</td><td>@(user.Email ?? "—")</td><td><span class="badge @(user.IsEnabled ? "badge-green" : "badge-muted")">@(user.IsEnabled ? "启用" : "停用")</span></td><td>@user.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td></tr> }
+@if (Model.Users.Count == 0) { <tr><td colspan="5" class="empty-state">暂无用户</td></tr> }
+</tbody></table></div></section>
+</div>

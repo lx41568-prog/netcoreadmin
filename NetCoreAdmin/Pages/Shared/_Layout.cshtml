@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - NetCoreAdmin</title>
+    <link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
+</head>
+<body>
+    <aside class="sidebar">
+        <a class="brand" asp-page="/Index"><span class="brand-mark">N</span> NetCoreAdmin</a>
+        <div class="nav-caption">工作区</div>
+        <a class="nav-link" asp-page="/Index"><span>▦</span> 总览</a>
+        <div class="nav-caption">系统管理</div>
+        <a class="nav-link" asp-page="/Admin/Users/Index"><span>♙</span> 用户管理</a>
+        <a class="nav-link" asp-page="/Admin/Roles/Index"><span>♧</span> 角色管理</a>
+        <a class="nav-link" asp-page="/Admin/Dictionaries/Index"><span>☷</span> 字典管理</a>
+        <a class="nav-link" asp-page="/Admin/Configs/Index"><span>⚙</span> 系统参数</a>
+    </aside>
+    <main class="main-area">
+        <header class="topbar"><div class="breadcrumb">管理中心 <span>/</span> @ViewData["Title"]</div>
+            <div class="user-area"><span>@User.Identity?.Name</span>
+                <form method="post" asp-page="/Account/Logout"><button class="button button-quiet" type="submit">退出登录</button></form>
+            </div>
+        </header>
+        <section class="page-content">@RenderBody()</section>
+    </main>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,16 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "总览";
+}
+<div class="page-heading"><div><div class="eyebrow">ADMINISTRATION</div><h1>管理总览</h1><p>欢迎使用 NetCoreAdmin 管理后台。</p></div></div>
+<div class="stats-grid">
+    <article class="stat-card"><span class="stat-label">系统状态</span><strong>运行中</strong><span class="stat-note"><i class="status-dot"></i> MySQL / SqlSugar</span></article>
+    <article class="stat-card"><span class="stat-label">当前账户</span><strong>@User.Identity?.Name</strong><span class="stat-note">已通过身份验证</span></article>
+    <article class="stat-card"><span class="stat-label">目标框架</span><strong>.NET 10</strong><span class="stat-note">Razor Pages</span></article>
+</div>
+<section class="panel"><div class="panel-heading"><div><h2>快速入口</h2><p>常用系统管理功能</p></div></div><div class="quick-links">
+    <a class="quick-link" asp-page="/Admin/Users/Index"><span class="quick-icon">♙</span><span><b>用户管理</b><small>维护后台用户</small></span><span class="arrow">→</span></a>
+    <a class="quick-link" asp-page="/Admin/Roles/Index"><span class="quick-icon">♧</span><span><b>角色管理</b><small>维护角色定义</small></span><span class="arrow">→</span></a>
+    <a class="quick-link" asp-page="/Admin/Dictionaries/Index"><span class="quick-icon">☷</span><span><b>字典管理</b><small>管理分类与字典项</small></span><span class="arrow">→</span></a>
+</div></section>

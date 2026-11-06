@@ -1,0 +1,12 @@
+@page
+@model LoginModel
+@{
+    Layout = null;
+    ViewData["Title"] = "登录";
+}
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>登录 - NetCoreAdmin</title><link rel="stylesheet" href="~/css/admin.css" asp-append-version="true"/></head>
+<body class="login-page"><main class="login-card"><a class="brand login-brand" href="/"><span class="brand-mark">N</span> NetCoreAdmin</a><h1>登录管理后台</h1><p class="login-subtitle">使用管理员账户继续</p>
+@if (!string.IsNullOrWhiteSpace(Model.ErrorMessage)) { <div class="alert-error">@Model.ErrorMessage</div> }
+<form method="post" class="form-stack"><label>用户名<input asp-for="Input.UserName" autocomplete="username" autofocus /></label><span asp-validation-for="Input.UserName" class="field-error"></span><label>密码<input asp-for="Input.Password" type="password" autocomplete="current-password" /></label><span asp-validation-for="Input.Password" class="field-error"></span><button class="button button-primary button-wide" type="submit">登录</button></form>
+</main></body></html>
